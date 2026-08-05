@@ -1,73 +1,121 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# AIO Shoe Store — Backend API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+![TypeScript](https://img.shields.io/badge/TypeScript-%233178C6.svg?logo=typescript&logoColor=white)
+![NestJS](https://img.shields.io/badge/NestJS-E0234E.svg?logo=nestjs&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-43853D.svg?logo=node.js&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-47A248.svg?logo=mongodb&logoColor=white)
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+A production-oriented backend API for an e-commerce shoe store built with NestJS and MongoDB — focused on clean architecture, secure authentication, and developer ergonomics.
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Key features
 
-## Installation
+- Designed for fast onboarding: well-structured NestJS modules (controllers, services, schemas) that are easy to read and extend.
+- Secure authentication: JWT + Passport strategies for stateless, production-ready auth flows.
+- Robust data modeling: Mongoose schemas with validation to keep product and user data consistent.
+- Developer-focused DX: TypeScript-first codebase, linting, formatting, and test scripts to keep quality high.
+- Testable and automatable: Jest + Supertest-powered test configuration and clear npm scripts for CI use.
 
-```bash
-$ npm install
-```
+## Tech stack
 
-## Running the app
+- Languages: TypeScript (primary), JavaScript
+- Frameworks & libs: NestJS, Mongoose, Passport, Passport-JWT, RxJS
+- Testing: Jest, Supertest
+- Tooling: ESLint, Prettier, ts-node, ts-jest
+- Runtime: Node.js
+- Database: MongoDB
 
-```bash
-# development
-$ npm run start
+## Architecture / How it works (high-level)
 
-# watch mode
-$ npm run start:dev
+- The application follows NestJS opinionated architecture: feature modules contain controllers (HTTP layer), services (business logic), and Mongoose schemas (persistence).
+- Authentication is handled via Passport strategies: local (where used) and JWT for issuing and validating tokens.
+- Configuration values (database URI, secrets, ports) are provided through environment variables and loaded via @nestjs/config.
+- Requests are validated at the DTO layer and persisted through Mongoose models; services are thin and focused for easier unit testing.
 
-# production mode
-$ npm run start:prod
-```
+## Installation & setup
 
-## Test
+Requirements
+
+- Node.js (18+) and npm
+- MongoDB instance (local, cloud atlas, or Docker)
+
+Quick start
+
+1. Clone the repo
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+git clone https://github.com/sobhanhsa/aio-shoe-store-back.git
+cd aio-shoe-store-back
 ```
 
-## Support
+2. Install dependencies
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+npm install
+```
 
-## Stay in touch
+3. Create a `.env` file in the project root with the minimum required values:
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```env
+MONGO_URI=mongodb://localhost:27017/aio-shoe-store
+JWT_SECRET=your_jwt_secret_here
+PORT=3000
+```
 
-## License
+4. Run in development mode (auto-reloads on change)
 
-Nest is [MIT licensed](LICENSE).
+```bash
+npm run start:dev
+```
+
+5. Build & run production
+
+```bash
+npm run build
+npm run start:prod
+```
+
+6. Run tests
+
+```bash
+# Unit / integration tests
+npm test
+
+# End-to-end tests (if available)
+npm run test:e2e
+```
+
+Notes
+
+- If you use MongoDB Atlas, set `MONGO_URI` to the connection string and ensure IP/network access is permitted.
+- Adjust `JWT_SECRET` to a strong, unique value and store it securely in CI or a secrets manager in production.
+
+## What I learned / challenges solved
+
+- Built a production-oriented NestJS backend with clear module separation and TypeScript-first development.
+- Implemented stateless authentication using Passport + JWT and handled token lifecycle and validation securely.
+- Modeled application data using Mongoose schemas and learned how to balance schema validation with application-level checks.
+- Improved developer experience through scripts, linting, and test configuration — reduced cognitive load for future contributors.
+- Dealt with async flows and error propagation in NestJS, improving reliability and logging points for easier debugging.
+
+These experiences demonstrate practical knowledge in building backend systems you can operate and iterate on in real-world projects.
+
+## Future improvements
+
+- Add a Dockerfile and docker-compose for local development and reproducible environments.
+- Add CI pipeline (GitHub Actions) that runs linting, tests, and builds on each PR.
+- Implement role-based access control and finer-grained permissions for admin/customer flows.
+- Add caching (Redis) and request rate-limiting to improve performance and resiliency.
+- Expand test coverage with targeted unit tests and contract tests for the API surface.
+- Provide OpenAPI (Swagger) documentation for easier API exploration.
+
+## Contact / Links
+
+- GitHub: https://github.com/sobhanhsa
+- LinkedIn: https://www.linkedin.com/in/sobhangss
+- Email: sobhanhsa1@gmail.com
+
+---
+
+If you'd like, I can also add a CONTRIBUTING.md, Docker setup, or a CI workflow to make this repository production-ready for hiring demos and technical interviews.
