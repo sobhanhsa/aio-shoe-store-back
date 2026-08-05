@@ -5,7 +5,7 @@
 ![Node.js](https://img.shields.io/badge/Node.js-43853D.svg?logo=node.js&logoColor=white)
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248.svg?logo=mongodb&logoColor=white)
 
-Main goal of building this project and related ![front project](https://github.com/sobhanhsa/](https://github.com/sobhanhsa/aio-shoe-store) was for attending to AIO cup.
+Main goal of building this project and related [front project](https://github.com/sobhanhsa/](https://github.com/sobhanhsa/aio-shoe-store) was for attending to AIO cup.
 A production-oriented backend API for an e-commerce shoe store built with NestJS and MongoDB — focused on clean architecture, secure authentication, and developer ergonomics.
 
 ---
